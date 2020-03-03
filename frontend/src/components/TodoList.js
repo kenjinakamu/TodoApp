@@ -83,6 +83,10 @@ class TodoList extends Component {
 
     return (
         <>
+          <div style={{position: "fixed", left: 24, bottom: 24}}>
+            <a href="http://localhost:8080/swagger-ui.html#/" target="_blank" rel="noopener noreferrer">Swagger UI</a>
+          </div>
+
           <Fab size="medium" aria-label="add" style={addStyle} onClick={this.handleOpen}>
             <AddIcon/>
           </Fab>
@@ -111,7 +115,7 @@ class TodoList extends Component {
               }
             </TableBody>
           </Table>
-          
+
           <Dialog onClose={this.handleClose} open={isOpened}>
             <DialogTitle>新規登録</DialogTitle>
             <DialogContent style={dialogStyle}>
@@ -128,6 +132,7 @@ class TodoList extends Component {
               </form>
             </DialogContent>
           </Dialog>
+
         </>
     )
   }
