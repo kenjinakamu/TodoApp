@@ -14,7 +14,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-form": "^8.2.6",
     "redux-thunk": "^2.3.0",
-    "serialize-javascript": "^2.1.2"
+    "serialize-javascript": "^7.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
