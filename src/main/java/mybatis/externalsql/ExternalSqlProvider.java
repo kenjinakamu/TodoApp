@@ -15,6 +15,7 @@ public final class ExternalSqlProvider {
 	 * @return Mapperメソッドに対応するSQL本文
 	 * @throws IllegalStateException 対応するSQLがキャッシュに存在しない場合
 	 */
+	@SuppressWarnings("unused")
 	public static String provideSql(ProviderContext context) {
 		String path = ExternalSqlPath.of(context.getMapperType(), context.getMapperMethod());
 		return ExternalSqlCache.get(path).sql();

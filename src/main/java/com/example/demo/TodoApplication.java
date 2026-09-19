@@ -3,7 +3,7 @@ package com.example.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"com.example.demo", "erd.mybatis"})
+@SpringBootApplication(scanBasePackages = {"com.example.demo"})
 public class TodoApplication {
     public static void main(String[] args) {
         SpringApplication.run(TodoApplication.class, args);

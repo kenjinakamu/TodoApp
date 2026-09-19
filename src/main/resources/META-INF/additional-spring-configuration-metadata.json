@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "app.cors.allowed-origin",
+      "type": "java.lang.String",
+      "description": "Allowed origin for CORS requests to the Todo API.",
+      "defaultValue": "http://localhost:3000"
+    }
+  ]
+}
