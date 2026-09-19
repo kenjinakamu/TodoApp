@@ -1,27 +1,15 @@
 package com.example.demo.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import jakarta.validation.constraints.NotBlank;
 
-import javax.persistence.*;
+import java.time.OffsetDateTime;
 
-@Data
-@Entity
-@Table(name = "todo")
-@EqualsAndHashCode(callSuper = false)
-public class Todo extends TimestampEntity {
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "title")
-    private String title;
-
-    @Column(name = "detail")
-    private String detail;
-
-    @Column(name = "is_completed")
-    private Boolean isCompleted;
+public record Todo(
+        Long id,
+        @NotBlank String title,
+        @NotBlank String detail,
+        Boolean isCompleted,
+        OffsetDateTime createdAt,
+        OffsetDateTime updatedAt
+) {
 }

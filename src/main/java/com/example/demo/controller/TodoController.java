@@ -2,43 +2,46 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Todo;
 import com.example.demo.service.TodoService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/todo")
+@CrossOrigin(origins = "${app.cors.allowed-origin:http://localhost:3000}")
 public class TodoController {
     private final TodoService todoService;
 
-    @RequestMapping(method = RequestMethod.POST)
-    public Todo createTodo(@Validated @RequestBody Todo todo) {
-        return todoService.save(todo);
+    public TodoController(TodoService todoService) {
+        this.todoService = todoService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "{id}")
-    public Todo getTodo(@PathVariable("id") Long id) {
-        return todoService.findOne(id).orElseThrow(RuntimeException::new);
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Todo createTodo(@Valid @RequestBody Todo todo) {
+        return todoService.create(todo);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping("/{id}")
+    public Todo getTodo(@PathVariable Long id) {
+        return todoService.findOne(id);
+    }
+
+    @GetMapping
     public List<Todo> getTodoList() {
         return todoService.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "{id}")
-    public Todo updateTodo(@PathVariable("id") Long id, @RequestBody Todo todo) {
-        todo.setId(id);
-        return todoService.save(todo);
+    @PutMapping("/{id}")
+    public Todo updateTodo(@PathVariable Long id, @Valid @RequestBody Todo todo) {
+        return todoService.update(id, todo);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "{id}")
-    public void deleteTodo(@PathVariable("id") Long id) {
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteTodo(@PathVariable Long id) {
         todoService.delete(id);
     }
-
 }
