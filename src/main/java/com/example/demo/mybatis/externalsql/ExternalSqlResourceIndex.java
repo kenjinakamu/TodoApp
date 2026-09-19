@@ -1,4 +1,4 @@
-package mybatis.externalsql;
+package com.example.demo.mybatis.externalsql;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -10,8 +10,8 @@ import java.util.Map;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
-import mybatis.model.ExternalSql;
-import mybatis.model.IndexedSqlResource;
+import com.example.demo.mybatis.model.ExternalSql;
+import com.example.demo.mybatis.model.IndexedSqlResource;
 
 final class ExternalSqlResourceIndex {
 

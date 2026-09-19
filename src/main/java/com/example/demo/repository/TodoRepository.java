@@ -1,7 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.entity.Todo;
-import mybatis.externalsql.ExternalSqlProvider;
+import com.example.demo.mybatis.externalsql.ExternalSqlProvider;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

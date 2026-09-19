@@ -1,4 +1,4 @@
-package mybatis.externalsql;
+package com.example.demo.mybatis.externalsql;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -18,9 +18,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.stereotype.Component;
 
-import mybatis.model.ExternalSql;
-import mybatis.model.ExternalSqlValidationError;
-import mybatis.model.IndexedSqlResource;
+import com.example.demo.mybatis.model.ExternalSql;
+import com.example.demo.mybatis.model.ExternalSqlValidationError;
+import com.example.demo.mybatis.model.IndexedSqlResource;
 
 /**
  * 外部SQLを起動時に一括走査・検証し、Providerが利用するキャッシュを構築する。

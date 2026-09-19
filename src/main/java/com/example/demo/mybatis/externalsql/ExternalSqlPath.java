@@ -1,4 +1,4 @@
-package mybatis.externalsql;
+package com.example.demo.mybatis.externalsql;
 
 import java.lang.reflect.Method;
 

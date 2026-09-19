@@ -6,7 +6,7 @@ import type { SubmitEvent } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { todoApi } from "@/lib/api";
 
-export function TodoDetailPage() {
+export default function TodoDetailPage() {
   const params = useParams<{ id: string }>();
   const router = useRouter();
   const id = Number(params.id);

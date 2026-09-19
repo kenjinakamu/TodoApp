@@ -1,4 +1,4 @@
-package mybatis.model;
+package com.example.demo.mybatis.model;
 
 import org.springframework.core.io.Resource;
 

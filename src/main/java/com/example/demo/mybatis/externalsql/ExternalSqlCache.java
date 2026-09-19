@@ -1,8 +1,8 @@
-package mybatis.externalsql;
+package com.example.demo.mybatis.externalsql;
 
 import java.util.Map;
 
-import mybatis.model.ExternalSql;
+import com.example.demo.mybatis.model.ExternalSql;
 
 final class ExternalSqlCache {
 
