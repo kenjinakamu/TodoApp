@@ -4,6 +4,17 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { SubmitEvent } from "react";
 import { useParams, useRouter } from "next/navigation";
+import {
+  Alert,
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { todoApi } from "@/lib/api";
 
 export default function TodoDetailPage() {
@@ -16,19 +27,26 @@ export default function TodoDetailPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    void todoApi.get(id)
-        .then((todo) => {
-          setTitle(todo.title);
-          setDetail(todo.detail);
-          setIsCompleted(todo.isCompleted);
-        })
-        .catch((e: unknown) => setError(e instanceof Error ? e.message : "Todo の取得に失敗しました。"));
+    void todoApi
+      .get(id)
+      .then((todo) => {
+        setTitle(todo.title);
+        setDetail(todo.detail);
+        setIsCompleted(todo.isCompleted);
+      })
+      .catch((e: unknown) =>
+        setError(e instanceof Error ? e.message : "Todo の取得に失敗しました。"),
+      );
   }, [id]);
 
   async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
-      await todoApi.update(id, {title: title.trim(), detail: detail.trim(), isCompleted});
+      await todoApi.update(id, {
+        title: title.trim(),
+        detail: detail.trim(),
+        isCompleted,
+      });
       router.push("/");
     } catch (e) {
       setError(e instanceof Error ? e.message : "更新に失敗しました。");
@@ -46,20 +64,56 @@ export default function TodoDetailPage() {
   }
 
   return (
-      <main className="container narrow">
-        <Link className="back" href="/">← 一覧へ戻る</Link>
-        <form className="card form" onSubmit={handleSubmit}>
-          <h1>Todo 詳細</h1>
-          {error && <p className="error">{error}</p>}
-          <label>件名<input value={title} onChange={(e) => setTitle(e.target.value)} required/></label>
-          <label>詳細<textarea value={detail} onChange={(e) => setDetail(e.target.value)} rows={6} required/></label>
-          <label className="check"><input type="checkbox" checked={isCompleted}
-                                          onChange={(e) => setIsCompleted(e.target.checked)}/> 完了</label>
-          <div className="actions">
-            <button className="primary" type="submit">更新</button>
-            <button className="danger" type="button" onClick={handleDelete}>削除</button>
-          </div>
-        </form>
-      </main>
+    <Container maxWidth="sm" sx={{ py: { xs: 3, sm: 6 } }}>
+      <Stack spacing={2.5}>
+        <Button component={Link} href="/" variant="text" sx={{ alignSelf: "flex-start" }}>
+          ← 一覧へ戻る
+        </Button>
+
+        <Paper component="form" onSubmit={handleSubmit} sx={{ p: { xs: 2.5, sm: 3 } }}>
+          <Stack spacing={2.5}>
+            <Typography variant="h4" component="h1" fontWeight={700}>
+              Todo 詳細
+            </Typography>
+
+            {error && <Alert severity="error">{error}</Alert>}
+
+            <TextField
+              label="件名"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              fullWidth
+            />
+            <TextField
+              label="詳細"
+              value={detail}
+              onChange={(e) => setDetail(e.target.value)}
+              required
+              fullWidth
+              multiline
+              rows={6}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={isCompleted}
+                  onChange={(e) => setIsCompleted(e.target.checked)}
+                />
+              }
+              label="完了"
+            />
+            <Stack direction="row" spacing={1.5}>
+              <Button variant="contained" type="submit">
+                更新
+              </Button>
+              <Button variant="outlined" color="error" type="button" onClick={handleDelete}>
+                削除
+              </Button>
+            </Stack>
+          </Stack>
+        </Paper>
+      </Stack>
+    </Container>
   );
 }
