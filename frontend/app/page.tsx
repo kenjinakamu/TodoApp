@@ -45,7 +45,6 @@ export default function Home() {
     <main className="container">
       <div className="header">
         <div>
-          <p className="eyebrow">Spring Boot 4.1.1 + Next.js</p>
           <h1>Todo List</h1>
         </div>
         <button className="primary" onClick={() => setShowForm((value) => !value)}>
