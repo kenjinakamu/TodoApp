@@ -4,17 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { SubmitEvent } from "react";
 import { useParams, useRouter } from "next/navigation";
-import {
-  Alert,
-  Button,
-  Checkbox,
-  Container,
-  FormControlLabel,
-  Paper,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import {Alert, Button, Checkbox, Container, FormControlLabel, Paper, Stack, TextField, Typography,} from "@mui/material";
 import { todoApi } from "@/lib/api";
 
 export default function TodoDetailPage() {
@@ -72,7 +62,11 @@ export default function TodoDetailPage() {
 
         <Paper component="form" onSubmit={handleSubmit} sx={{ p: { xs: 2.5, sm: 3 } }}>
           <Stack spacing={2.5}>
-            <Typography variant="h4" component="h1" fontWeight={700}>
+            <Typography
+                variant="h4"
+                component="h1"
+                sx={{ fontWeight: 700 }}
+            >
               Todo 詳細
             </Typography>
 
